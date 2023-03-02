@@ -6,7 +6,19 @@ Forked from https://github.com/insin/obs-bounce to fix the hotkey not working as
 
 # Usage
 
-todo
+Download [bounce.lua](https://github.com/Gambloide/obs-bounce/blob/master/bounce.lua) then:
+
+1. In OBS, make sure the scene with the source you want to move (e.g. your cam) is active.
+2. In OBS, open Tools > Scripts in the menu bar at the top.
+3. Click on the "+" button on the bottom left of the windows that opened.
+4. Select the "bounce.lua" file and click "Open".
+5. In the drop down menu which opened on the right, select the source you want to move.
+6. Click toggle and it should start moving.
+
+You can set-up a hotkey to toggle the animation without having to open this window:
+
+1. In OBS, open File > Settings > Hotkeys you will find a "Toggle Bounce" entry. If you can't find it, type "bounce" in the "Filter" bar at the top of the settings.
+2. Click in the input field next to "Toggle Bounce", then press the hotkey or key combination you want to use to toggle the animation.
 
 # License Information
 
