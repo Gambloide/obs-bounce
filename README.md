@@ -4,6 +4,9 @@ OBS script to bounce a scene item around, DVD logo style or throw & bounce with 
 
 Forked from https://github.com/insin/obs-bounce to fix the hotkey not working as a toggle.
 
+I have no experience with lua or the OBS bindings used.
+I just understood that the issue caused by the hotkey event triggering twice, once when you press down the key and once again when it is released, causing the toggle not to work like a toggle.
+
 # Usage
 
 Download [bounce.lua](https://github.com/Gambloide/obs-bounce/blob/master/bounce.lua) then:
