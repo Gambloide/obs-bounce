@@ -9,7 +9,7 @@ I just understood that the issue caused by the hotkey event triggering twice, on
 
 # Usage
 
-Download [bounce.lua](https://github.com/Gambloide/obs-bounce/blob/master/bounce.lua) then:
+Download [the latest version](https://github.com/Gambloide/obs-bounce/archive/refs/tags/1.3.zip), extract the downloaded zip, then:
 
 1. In OBS, make sure the scene with the source you want to move (e.g. your cam) is active.
 2. In OBS, open Tools > Scripts in the menu bar at the top.
