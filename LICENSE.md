@@ -1,5 +1,3 @@
-Begin license text.
-
 MIT License
 
 Copyright (c) 2023 Jonny Buchanan, Sebastian M. Reuter
@@ -21,13 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-End license text.
-
-Note:
-Individual files contain the following tag instead of the full license text.
-
-	SPDX-License-Identifier:	MIT
-
-This enables machine processing of license information based on the SPDX
-License Identifiers that are here available: http://spdx.org/licenses/
