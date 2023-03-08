@@ -7,6 +7,8 @@ Forked from https://github.com/insin/obs-bounce to fix the hotkey not working as
 I have no experience with lua or the OBS bindings used.
 I just understood that the issue caused by the hotkey event triggering twice, once when you press down the key and once again when it is released, causing the toggle not to work like a toggle.
 
+A sideeffect is that the `Toggle` button in the UI needs to be pressed twice to trigger the toggle. 
+
 # Bad Quality Demo
 
 https://user-images.githubusercontent.com/5939852/222574678-87263ea0-bbb9-4941-8833-73b3af84b8e2.mp4
