@@ -230,12 +230,20 @@ function move_scene_item(scene_item)
    local pos, width, height = get_scene_item_dimensions(scene_item)
    local next_pos = obs.vec2()
 
-   if moving_right and pos.x + width < scene_width then
+   --- flipping a source horizontally negates its reported width
+   --- we have to account for that
+   local flipped_x = width < 0
+   local x_flip_adjustment = 0;
+   if flipped_x then
+      x_flip_adjustment = width
+   end
+
+   if moving_right and pos.x + width < scene_width + x_flip_adjustment then
       next_pos.x = math.min(pos.x + speed, scene_width - width)
    else
       moving_right = false
-      next_pos.x = math.max(pos.x - speed, 0)
-      if next_pos.x == 0 then moving_right = true end
+      next_pos.x = math.max(pos.x - speed, math.abs(x_flip_adjustment))
+      if next_pos.x == math.abs(x_flip_adjustment) then moving_right = true end
    end
 
    if moving_down and pos.y + height < scene_height then
