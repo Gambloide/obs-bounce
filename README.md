@@ -15,7 +15,7 @@ https://user-images.githubusercontent.com/5939852/222574678-87263ea0-bbb9-4941-8
 
 # Usage
 
-Download [the latest version](https://github.com/Gambloide/obs-bounce/archive/refs/tags/1.3.zip), extract the downloaded zip, then:
+Download [the latest version](https://github.com/Gambloide/obs-bounce/archive/refs/tags/1.4.zip), extract the downloaded zip, then:
 
 1. In OBS, make sure the scene with the source you want to move (e.g. your cam) is active.
 2. In OBS, open Tools > Scripts in the menu bar at the top.
