@@ -7,7 +7,7 @@ The above copyright notice and this permission notice (including the next paragr
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-obs-bounce v1.3 - https://github.com/Gambloide/obs-bounce
+obs-bounce v1.4 - https://github.com/Gambloide/obs-bounce
 
 Bounces a scene item around, DVD logo style or throw & bounce with physics.
 ]]--
@@ -62,22 +62,51 @@ local ground_friction = 0.95
 local elasticity = 0.8
 
 --- find the named scene item and its original position in the current scene
-local function find_scene_item()
-   local source = obs.obs_frontend_get_current_scene()
-   if not source then
-      print('there is no current scene')
-      return
+function find_scene_item()
+   if not source_name or source_name == '' then
+      obs.script_log(obs.LOG_INFO, 'no source name')
+      return false
    end
-   scene_width = obs.obs_source_get_width(source)
-   scene_height = obs.obs_source_get_height(source)
-   local scene = obs.obs_scene_from_source(source)
-   obs.obs_source_release(source)
-   scene_item = obs.obs_scene_find_source(scene, source_name)
-   if scene_item then
-      original_pos = get_scene_item_pos(scene_item)
-      return true
+
+   local frontend_scenes = obs.obs_frontend_get_scenes()
+   local frontend_scene --- type obs_source_t
+
+   local frontend_scene_items
+   local frontend_scene_item
+
+   --- loop through all frontend scenes
+   for _, frontend_scene in ipairs(frontend_scenes) do
+
+      local scene_source = obs.obs_scene_from_source(frontend_scene)
+      frontend_scene_items = obs.obs_scene_enum_items(scene_source)
+
+      --- loop through all scene items in the scene
+      for _, frontend_scene_item in ipairs(frontend_scene_items) do
+         local item_source = obs.obs_sceneitem_get_source(frontend_scene_item)
+
+         --- once we found our scene, assign the global scene_item and end
+         if (obs.obs_source_get_name(item_source) == source_name) then
+            scene_item = frontend_scene_item
+            scene_width = obs.obs_source_get_width(frontend_scene)
+            scene_height = obs.obs_source_get_height(frontend_scene)
+            original_pos = get_scene_item_pos(scene_item)
+
+            obs.script_log(obs.LOG_INFO, source_name .. ' found')
+            break;
+         end
+      end
+
+      if scene_item then
+         obs.sceneitem_list_release(frontend_scene_items)
+         obs.source_list_release(frontend_scenes) 
+         return true
+      end
    end
-   print(source_name..' not found')
+
+   obs.source_list_release(frontend_scenes)
+
+   obs.script_log(obs.LOG_INFO, source_name .. ' not found')
+
    return false
 end
 
